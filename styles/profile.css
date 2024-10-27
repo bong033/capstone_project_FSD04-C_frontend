@@ -129,13 +129,6 @@ body {
   border-bottom-right-radius: 0.5rem;
 }
 
-/* end of profile section */
-
-/* Kai - I had commented this coz it change the background color on the profile navbar
-.nav-link{
-  background-color: rgb(211, 211, 211, 0.3);
-} */
-
 .modal-dialog
 
 .modal-content{
@@ -164,3 +157,5 @@ body {
 .header-titles{
   color: #9ac7c8;
 }
+
+/* end of profile section */

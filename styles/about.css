@@ -13,12 +13,10 @@
 }
 
 .about-container {
-  /* height: 100dvh; */
   font-family: "Poppins", sans-serif;
   color: #4fb5d2;
   font-weight: bold;
   font-style: normal;
-  /* background-image: none !important; */
   background-color: white;
 }
 
@@ -65,7 +63,6 @@
   background-blend-mode: overlay;
   min-height: 27rem;
   max-width: 100%;
-  /* width: 100%; */
   height: auto;
   width: 100dvw !important;
 }
@@ -98,7 +95,6 @@
 .register-button {
   background-color: #73dadc;
   padding: 0.4rem 0rem;
-  /* min-width: 40%; */
   width: 90% !important;
   text-decoration: none;
 }

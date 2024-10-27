@@ -20,7 +20,7 @@ body {
     background-attachment: fixed;
 }
 
-/* start of register section */
+/* start of login section */
 
 .login-section {
   margin-top: 6rem;
@@ -59,4 +59,4 @@ body {
   text-align: center;
 }
   
-  /* end of register section */
+  /* end of login section */

@@ -1,28 +1,28 @@
 // Function to authenticate the user via site's JWT token
 function isAuthenticated(){
-
-    const token = window.localStorage.getItem(_USERTOKEN);          // Retrieve usertoken from local storage
-
-    const expired = isTokenExpired(token);                          // Check the token's expiry 
-    
-    if(expired)                                                     // If expired, return (false)
+    // Retrieve usertoken from local storage
+    const token = window.localStorage.getItem(_USERTOKEN);          
+    // Check the token's expiry 
+    const expired = isTokenExpired(token);                          
+    // If expired, return (false)
+    if(expired)                                                     
         return;
-
-    return token;                                                   // Else return token (usertoken)
+    // Else return token (usertoken)
+    return token;                                                   
 }
 
 // Function to check if the token has expired
 function isTokenExpired(token) {                                    
-
-    if (!token) return true;                                        // Return true if token passed in is undefined 
-
-    const payload = JSON.parse(atob(token.split('.')[1]));          // Decode the JWT token (a base64-encoded JSON payload)
-
-    const expirationTime = payload.exp;                             // Get the expiration time from the token payload
-
-    const currentTime = Math.floor(Date.now() / 1000);              // Current time in seconds
-
-    return expirationTime < currentTime;                            // Return true ONLY when currentTime is LESS THAN token's expirationTime
+    // Return true if token passed in is undefined 
+    if (!token) return true;                                        
+    // Decode the JWT token (a base64-encoded JSON payload)
+    const payload = JSON.parse(atob(token.split('.')[1]));          
+    // Get the expiration time from the token payload
+    const expirationTime = payload.exp;                             
+    // Current time in seconds
+    const currentTime = Math.floor(Date.now() / 1000);              
+    // Return true ONLY when currentTime is LESS THAN token's expirationTime
+    return expirationTime < currentTime;                            
 }
 
 // Function to decode the user's email from the parameter
@@ -42,31 +42,32 @@ function decodeUser(token){
 
 // Funtion to login
 async function login(formData = {}){
-
-    if(Object.entries(formData).length === 0)                                               // Return if the object is empty
+    // Return if the object is empty
+    if(Object.entries(formData).length === 0)                                               
         return;
 
-    
-    try {                                                                                   // !! Try/catch block (exception handling) to send data to login enpoint
-        const response = await fetch(_ENDPOINT_LOGIN, {                                     // !! DONE: API call for Authentication
+    // !! Try/catch block (exception handling) to send data to login enpoint
+    try {       
+        // !! DONE: API call for Authentication                                                                            
+        const response = await fetch(_ENDPOINT_LOGIN, {                                     
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(formData)
         });
 
         const status = response.status;
-
-        if(response.ok){                                                                    // If response status == 200 (ok)
+        // If response status == 200 (ok)
+        if(response.ok){                                                                    
             const result = await response.json();
             const token = result.token;                                                   
-            
-            window.localStorage.setItem(_USERTOKEN, token);                                 // Store the string in localStorage with the key 'usertoken'
+             // Store the string in localStorage with the key 'usertoken'
+            window.localStorage.setItem(_USERTOKEN, token);                                
             
             spinner.displaySpinner(false);
             window.location = _PROFILE_URL;
         }
-
-        return status === 200 ? data : false;                                               // Else return false  
+        // Else return false 
+        return status === 200 ? data : false;                                                
                                                                          
     } catch (error) {
         console.log("Exception error gotten is: ", error.message);
@@ -88,15 +89,15 @@ async function postPatient(userId) {
 // Funtion to register
 async function register(formData){
     console.log(formData);
-    
-    if(Object.entries(formData).length === 0)                                               // Return if the object is empty
+    // Return if the object is empty
+    if(Object.entries(formData).length === 0)                                               
         return;
 
     // !! Try/catch block (exception handling) to send data to login enpoint
     try {
-        // FETCH requests - send data or retrive data by calling an API endpoint            // TODO: refactor when end-point is available
-
-            const response = await fetch(_ENDPOINT_SIGNUP, {                                // Perform an async POST request to process the form data
+        // FETCH requests - send data or retrive data by calling an API endpoint            
+            const response = await fetch(_ENDPOINT_SIGNUP, {    
+                // Perform an async POST request to process the form data                            
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(formData)
@@ -105,8 +106,8 @@ async function register(formData){
             // send email and password to server
             const status = response.status;
             const data = await response.json();
-
-            if (status === 226)                                                             // return 226 if account is already in use
+            // return 226 if account is already in use
+            if (status === 226)                                                             
                 return status;
 
             postPatient(data.user.userId);
@@ -158,7 +159,8 @@ async function update(formData1, formData2 = {}){
 
 // Function to logout
 function logout(){
-                                                   
-    window.localStorage.removeItem(_USERTOKEN);                                             // Remove the string in localStorage with the key 'usertoken'
-    window.location = _HOME_URL;                                                            // Redirect the user to homepage
+    // Remove the string in localStorage with the key 'usertoken'                                               
+    window.localStorage.removeItem(_USERTOKEN);    
+     // Redirect the user to homepage                                         
+    window.location = _HOME_URL;                                                           
 }

@@ -24,8 +24,10 @@ function showToast({toastElement, toastBodyElement, bgColor, msg}){
     // Run BootStrap5's toast to show the activity is complete.
     const toastEl = toastElement;
     const toastBody = toastBodyElement;
-    toastEl.classList.remove("bg-success");                 // Remove all known and used colors here first
-    toastEl.classList.remove("bg-danger");                  // Remove all known and used colors here first
+    // Remove all known and used colors here first
+    toastEl.classList.remove("bg-success");    
+    // Remove all known and used colors here first
+    toastEl.classList.remove("bg-danger");                  
     toastEl.classList.add(`bg-${bgColor}`);
     toastEl.classList.add("text-white");
     toastBody.textContent = msg;

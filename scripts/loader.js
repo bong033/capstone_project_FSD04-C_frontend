@@ -21,16 +21,17 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
     // Instantiate a spinner, currently used in login.html and register.html
     spinner = new Spinner();
-
-    const profilePageExists = window.location.pathname.includes(_PROFILE_URL);      // If _PROFILE_URL exists
+    // If _PROFILE_URL exists, profilePageExists = true
+    const profilePageExists = window.location.pathname.includes(_PROFILE_URL);      
     
-    if(profilePageExists){                                                          // If _PROFILE_URL exists, profilePageExists = true
+    if(profilePageExists){                                                          
         const token = isAuthenticated();                                     
                                                                             
-        if(!token)                                                                  // Redirect the user to index.html if token does not exist 
-            window.location = _HOME_URL;                                            // Otherwise, set up and display authenticated user in the profile page  
-     
-        const user = decodeUser(token);                                             // decode the token for the role
+        if(!token)    
+            // Redirect the user to index.html if token does not exist     
+            window.location = _HOME_URL;                                              
+        // decode the token for the role
+        const user = decodeUser(token);                                             
 
         // Perform the fetch request with the token for user profile
         async function fetchUserData(userEmail, token) {
@@ -46,14 +47,18 @@ document.addEventListener("DOMContentLoaded", async (event) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-        
-                const userData = await response.json(); // Parse the JSON response
-                console.log('User data:', userData); // Handle the data
-                return userData; // Return userData
+                // Parse the JSON response
+                const userData = await response.json(); 
+                // Handle the data
+                console.log('User data:', userData); 
+                // Return userData
+                return userData; 
         
             } catch (error) {
-                console.error('There was a problem with the fetch operation:', error); // Handle errors
-                throw error; // Rethrow the error if you want to handle it later
+                // Handle errors
+                console.error('There was a problem with the fetch operation:', error); 
+                // Rethrow the error if you want to handle it later
+                throw error; 
             }
         }
 
@@ -71,14 +76,18 @@ document.addEventListener("DOMContentLoaded", async (event) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-        
-                const nurseData = await response.json(); // Parse the JSON response
-                console.log('User data:', nurseData); // Handle the data
-                return nurseData; // Return userData
+                // Parse the JSON response
+                const nurseData = await response.json(); 
+                // Handle the data
+                console.log('User data:', nurseData); 
+                // Return userData
+                return nurseData; 
         
             } catch (error) {
-                console.error('There was a problem with the fetch operation:', error); // Handle errors
-                throw error; // Rethrow the error if you want to handle it later
+                // Handle errors
+                console.error('There was a problem with the fetch operation:', error); 
+                // Rethrow the error if you want to handle it later
+                throw error; 
             }
         } 
 
@@ -96,14 +105,18 @@ document.addEventListener("DOMContentLoaded", async (event) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-        
-                const patientData = await response.json(); // Parse the JSON response
-                console.log('User data:', patientData); // Handle the data
-                return patientData; // Return userData
+                // Parse the JSON response
+                const patientData = await response.json(); 
+                // Handle the data
+                console.log('User data:', patientData); 
+                // Return userData
+                return patientData; 
         
             } catch (error) {
-                console.error('There was a problem with the fetch operation:', error); // Handle errors
-                throw error; // Rethrow the error if you want to handle it later
+                // Handle errors
+                console.error('There was a problem with the fetch operation:', error); 
+                // Rethrow the error if you want to handle it later
+                throw error; 
             }
         } 
          
